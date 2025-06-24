@@ -1,69 +1,157 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>🌿 Pflanze setzen</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8" />
+  <title>GrowEmpire – Deine Pflanzen</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #101b14;
-      color: #e0ffe0;
+      margin: 0;
+      background: url('public/growempire_welcome.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: #eaffea;
       padding: 2rem;
     }
-    input, select, button {
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      width: 100%;
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #a6ffb3;
     }
-    .hidden { display: none; }
+
+    .plant-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .plant-card {
+      background: rgba(16, 38, 25, 0.92);
+      border: 1px solid #3bff93;
+      border-radius: 18px;
+      width: 320px;
+      padding: 1.5rem;
+      box-shadow: 0 0 20px rgba(0, 255, 128, 0.1);
+      backdrop-filter: blur(6px);
+    }
+
+    .plant-card h3 {
+      margin-top: 0;
+      color: #90ffc0;
+    }
+
+    .status {
+      font-size: 1.2rem;
+      color: #00ff99;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+
+    .bonus-info {
+      background: #183c27;
+      padding: 0.8rem;
+      border-left: 4px solid #2fff8c;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      color: #b4ffc5;
+      font-size: 0.9rem;
+    }
+
+    .progress-container {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      height: 24px;
+      border: 1px solid #444;
+    }
+
+    .progress-bar {
+      background: linear-gradient(to right, #32ff8c, #22cc66);
+      height: 100%;
+      text-align: center;
+      color: #001f11;
+      font-weight: bold;
+      line-height: 24px;
+      font-size: 13px;
+      transition: width 0.5s ease;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-reinvest {
+      background-color: #33ff99;
+      color: #00210f;
+    }
+
+    .btn-reinvest:hover {
+      background-color: #2ce68a;
+    }
+
+    .btn-locked {
+      background-color: #444;
+      color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .warning {
+      color: #ff5555;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+    }
   </style>
 </head>
 <body>
-  <h2>🌱 Neue Pflanze setzen</h2>
 
-  <div id="form-area">
-    <label for="sorte">Sorte wählen:</label>
-    <select id="sorte">
-      <option value="Haze">Haze</option>
-      <option value="Kush">Kush</option>
-      <option value="Skunk">Skunk</option>
-    </select>
-    <button onclick="pflanzeSetzen()">Setzen</button>
+  <h1>🌿 Deine aktuellen Pflanzen</h1>
+  <div class="plant-grid">
+    <div class="plant-card">
+      <h3>🌱 Pineberry</h3>
+      <div class="status">✅ Ernte bereit!</div>
+      <div class="bonus-info">🎁 +5 % Reinvestbonus • Gesamtbonus bis zu +25 %</div>
+      <div class="progress-container">
+        <div class="progress-bar" style="width: 40%;">CHF 12.– / CHF 30.–</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-reinvest">🔁 Reinvestieren</button>
+        <button class="btn btn-locked" disabled>💸 Auszahlung</button>
+      </div>
+      <div class="warning">⚠️ CHF 18.– fehlen zur Freischaltung</div>
+    </div>
+
+    <div class="plant-card">
+      <h3>🌿 Super Lemon</h3>
+      <div class="status">🌱 wächst noch...</div>
+      <div class="bonus-info">📈 Wachstum: 2 von 10 Wochen</div>
+      <div class="progress-container">
+        <div class="progress-bar" style="width: 20%;">Wachstum 20 %</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-locked" disabled>🔁 Reinvestieren</button>
+        <button class="btn btn-locked" disabled>💸 Auszahlung</button>
+      </div>
+      <div class="warning">⏳ Nicht erntereif</div>
+    </div>
   </div>
 
-  <p id="status" class="hidden"></p>
-
-  <script>
-    const supabase = supabase.createClient(
-      'https://ghfzdgaunxblpudkmxmy.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoZnpkZ2F1bnhibHB1ZGtteG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3MDI5NTksImV4cCI6MjA2NjI3ODk1OX0.J8ni4SszaI33ljthdEjqXf8ZKFCs4uWnRZZDyU0IlUU'
-    );
-
-    async function pflanzeSetzen() {
-      const sorte = document.getElementById('sorte').value;
-      const {
-        data: { user }
-      } = await supabase.auth.getUser();
-
-      if (!user) {
-        document.getElementById('status').textContent = "❌ Nicht eingeloggt.";
-        document.getElementById('status').classList.remove('hidden');
-        return;
-      }
-
-      const { error } = await supabase.from('pflanzen').insert({
-        nutzer_id: user.id,
-        sorte: sorte
-      });
-
-      if (error) {
-        document.getElementById('status').textContent = "❌ Fehler beim Pflanzen.";
-      } else {
-        document.getElementById('status').textContent = "✅ Pflanze erfolgreich gesetzt!";
-      }
-      document.getElementById('status').classList.remove('hidden');
-    }
-  </script>
 </body>
 </html>
