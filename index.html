@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowEmpire Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="supabase.js"></script>
+  <script defer src="auth.js"></script>
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <img src="/public/welcome.png" alt="GrowEmpire" class="login-bg">
+    <div class="login-glass">
+      <h1>Willkommen bei <span class="highlight">GrowEmpire</span></h1>
+      <p>Bitte einloggen, um dein Hanf-Imperium zu starten.</p>
+      <input type="email" id="email" placeholder="E-Mail">
+      <input type="password" id="password" placeholder="Passwort">
+      <button onclick="login()">Einloggen</button>
+      <p class="note">Noch kein Account? Schreibe uns auf <a href="mailto:jaun190@gmail.com">E-Mail</a></p>
+    </div>
+  </div>
+</body>
+</html>
