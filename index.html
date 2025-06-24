@@ -1,12 +1,88 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GrowEmpire</title>
+  <title>Login - GrowEmpire</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: url("public/welcome.png") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      width: 90%;
+      max-width: 400px;
+      color: white;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #27ae60;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .register-link {
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    .register-link a {
+      color: #2ecc71;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0; background-color: #000; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
-  <h1>Willkommen bei GrowEmpire</h1>
-  <a href="login.html" style="margin-top: 20px; color: #0f0;">Zur Login-Seite</a>
+<body>
+  <div class="login-container">
+    <h2>Login bei GrowEmpire</h2>
+    <form>
+      <input type="email" placeholder="E-Mail" required />
+      <input type="password" placeholder="Passwort" required />
+      <button type="submit">Einloggen</button>
+    </form>
+    <div class="register-link">
+      Noch keinen Account? <a href="register.html">Registrieren</a>
+    </div>
+  </div>
 </body>
 </html>
