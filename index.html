@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - GrowEmpire</title>
+  <title>Login – GrowEmpire</title>
   <style>
     * {
       box-sizing: border-box;
@@ -18,27 +17,38 @@
     }
 
     body {
-      background: url("public/welcome.png") no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: url("public/welcome.png") no-repeat center top;
+      background-size: contain;
+      background-color: #000;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6); /* Abdunkelung */
+      z-index: 0;
     }
 
     .login-container {
+      position: relative;
+      z-index: 1;
       background-color: rgba(0, 0, 0, 0.85);
       padding: 30px 20px;
       border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
       width: 90%;
       max-width: 400px;
       color: white;
       text-align: center;
+      margin: 100vh auto 0 auto; /* Weiter nach unten */
+      transform: translateY(-60%);
     }
 
     .login-container h2 {
       margin-bottom: 20px;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     input[type="email"], input[type="password"] {
