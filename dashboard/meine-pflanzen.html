@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>🌱 Meine Pflanzen</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #101b14;
+      color: #e0ffe0;
+      padding: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #355e42;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background-color: #244b33;
+    }
+  </style>
+</head>
+<body>
+  <h2>🌿 Deine gepflanzten Sorten</h2>
+  <table id="pflanzen-table">
+    <thead>
+      <tr><th>Sorte</th><th>Gepflanzt am</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const supabase = supabase.createClient(
+      'https://ghfzdgaunxblpudkmxmy.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoZnpkZ2F1bnhibHB1ZGtteG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3MDI5NTksImV4cCI6MjA2NjI3ODk1OX0.J8ni4SszaI33ljthdEjqXf8ZKFCs4uWnRZZDyU0IlUU'
+    );
+
+    async function ladePflanzen() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return alert("Nicht eingeloggt");
+
+      const { data, error } = await supabase
+        .from("pflanzen")
+        .select("*")
+        .eq("nutzer_id", user.id)
+        .order("created_at", { ascending: false });
+
+      const tbody = document.querySelector("#pflanzen-table tbody");
+      if (error) {
+        tbody.innerHTML = "<tr><td colspan='2'>Fehler beim Laden</td></tr>";
+        return;
+      }
+
+      if (data.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='2'>Keine Pflanzen gefunden</td></tr>";
+      } else {
+        data.forEach(pflanze => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${pflanze.sorte}</td><td>${new Date(pflanze.created_at).toLocaleDateString()}</td>`;
+          tbody.appendChild(row);
+        });
+      }
+    }
+
+    ladePflanzen();
+  </script>
+</body>
+</html>
