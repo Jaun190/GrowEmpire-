@@ -5,63 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login – GrowEmpire</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
-      background-image: url('/welcome.png');
-      background-size: contain; /* Bild vollständig anzeigen */
-      background-repeat: no-repeat;
-      background-position: center;
-      background-color: #0a0f0a; /* dunkles Grün als Hintergrund */
-      height: 100vh;
+      height: 100%;
       font-family: sans-serif;
+    }
+
+    body {
+      background: url('/welcome.png') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end; /* Login-Bereich unten */
-      align-items: center;
-      color: white;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 40px;
     }
 
     .login-box {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       padding: 25px;
       border-radius: 10px;
       width: 90%;
       max-width: 400px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      color: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
     }
 
     h1 {
-      margin-top: 0;
-      font-size: 24px;
       text-align: center;
+      margin-top: 0;
     }
 
-    input[type="email"],
-    input[type="password"] {
+    input {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 5px;
+      margin: 10px 0;
       font-size: 16px;
+      border-radius: 5px;
+      border: none;
     }
 
     button {
       width: 100%;
       padding: 12px;
       background-color: #3CB371;
-      border: none;
-      border-radius: 5px;
       color: white;
       font-size: 16px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
     }
 
     .register-link {
-      margin-top: 15px;
+      margin-top: 10px;
       text-align: center;
       font-size: 14px;
     }
@@ -73,7 +73,8 @@
 
     @media (max-height: 600px) {
       body {
-        justify-content: center; /* Bei sehr kleinen Bildschirmen mittig */
+        align-items: center;
+        padding-bottom: 0;
       }
     }
   </style>
