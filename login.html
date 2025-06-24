@@ -3,81 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login – GrowEmpire</title>
+  <title>Login | GrowEmpire</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
-      background: url("public/welcome.png") no-repeat center center fixed;
+      background-image: url('/public/welcome.png');
       background-size: cover;
-      color: white;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      font-family: sans-serif;
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      color: white;
     }
 
-    .container {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-
-    h1 {
-      margin-bottom: 20px;
+    .overlay {
+      width: 100%;
+      padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 20px 20px 0 0;
+      text-align: center;
     }
 
     input {
-      width: 250px;
-      padding: 10px;
+      width: 90%;
+      max-width: 300px;
+      padding: 12px;
       margin: 10px 0;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
+      font-size: 16px;
     }
 
     button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      background-color: #4CAF50;
+      padding: 12px 24px;
+      background-color: #2ecc71;
       border: none;
-      border-radius: 6px;
-      color: white;
+      border-radius: 8px;
       font-size: 16px;
+      color: white;
       cursor: pointer;
+      margin-top: 10px;
     }
 
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .link {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    .link a {
-      color: #90ee90;
+    a {
+      color: #2ecc71;
       text-decoration: none;
-    }
-
-    .link a:hover {
-      text-decoration: underline;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="overlay">
     <h1>Login bei GrowEmpire</h1>
-    <input type="email" id="email" placeholder="E-Mail" />
-    <input type="password" id="password" placeholder="Passwort" />
-    <button onclick="login()">Einloggen</button>
-    <div class="link">Noch keinen Account? <a href="register.html">Registrieren</a></div>
+    <input type="email" placeholder="E-Mail" />
+    <input type="password" placeholder="Passwort" />
+    <br />
+    <button>Einloggen</button>
+    <p>Noch keinen Account? <a href="register.html">Registrieren</a></p>
   </div>
-
-  <script src="supabase.js"></script>
-  <script src="auth.js"></script>
 </body>
 </html>
