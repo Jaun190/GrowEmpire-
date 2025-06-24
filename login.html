@@ -3,69 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | GrowEmpire</title>
+  <title>Login – GrowEmpire</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-image: url('/public/welcome.png');
-      background-size: cover;
-      background-position: center;
+      background-image: url('/welcome.png');
+      background-size: contain; /* Bild vollständig anzeigen */
       background-repeat: no-repeat;
+      background-position: center;
+      background-color: #0a0f0a; /* dunkles Grün als Hintergrund */
       height: 100vh;
       font-family: sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: flex-end; /* Login-Bereich unten */
       align-items: center;
       color: white;
     }
 
-    .overlay {
-      width: 100%;
-      padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      border-radius: 20px 20px 0 0;
+    .login-box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
       text-align: center;
     }
 
-    input {
-      width: 90%;
-      max-width: 300px;
-      padding: 12px;
-      margin: 10px 0;
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
       font-size: 16px;
     }
 
     button {
-      padding: 12px 24px;
-      background-color: #2ecc71;
+      width: 100%;
+      padding: 12px;
+      background-color: #3CB371;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
+      border-radius: 5px;
       color: white;
+      font-size: 16px;
       cursor: pointer;
-      margin-top: 10px;
     }
 
-    a {
-      color: #2ecc71;
-      text-decoration: none;
+    .register-link {
+      margin-top: 15px;
+      text-align: center;
       font-size: 14px;
+    }
+
+    .register-link a {
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    @media (max-height: 600px) {
+      body {
+        justify-content: center; /* Bei sehr kleinen Bildschirmen mittig */
+      }
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
+  <div class="login-box">
     <h1>Login bei GrowEmpire</h1>
     <input type="email" placeholder="E-Mail" />
     <input type="password" placeholder="Passwort" />
-    <br />
     <button>Einloggen</button>
-    <p>Noch keinen Account? <a href="register.html">Registrieren</a></p>
+    <div class="register-link">
+      Noch keinen Account? <a href="register.html">Registrieren</a>
+    </div>
   </div>
 </body>
 </html>
