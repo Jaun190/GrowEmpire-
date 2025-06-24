@@ -1,18 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <title>GrowEmpire – Login</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: url("welcome.png") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 250px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 15px;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; padding: 2rem;">
-  <h2>Login bei GrowEmpire</h2>
-
-  <input id="email" type="email" placeholder="E-Mail" style="display:block; margin: 10px 0; padding: 8px; width: 250px;" />
-  <input id="password" type="password" placeholder="Passwort" style="display:block; margin: 10px 0; padding: 8px; width: 250px;" />
-  <button onclick="login()" style="padding: 10px 20px;">Login</button>
-
-  <p id="status" style="margin-top: 20px;"></p>
+<body>
+  <div class="login-box">
+    <h2>Login bei GrowEmpire</h2>
+    <input id="email" type="email" placeholder="E-Mail" />
+    <input id="password" type="password" placeholder="Passwort" />
+    <br />
+    <button onclick="login()">Login</button>
+    <p id="status"></p>
+  </div>
 
   <script>
     const supabase = supabase.createClient(
@@ -31,7 +77,7 @@
         status.style.color = "red";
         status.textContent = "Fehler: " + error.message;
       } else {
-        status.style.color = "green";
+        status.style.color = "lightgreen";
         status.textContent = "Login erfolgreich! Weiterleitung...";
         setTimeout(() => {
           window.location.href = "dashboard.html";
