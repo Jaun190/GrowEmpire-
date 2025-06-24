@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>GrowEmpire Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+    const supabase = createClient(
+      'https://ghfzdgaunxblpudkmxmy.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoZnpkZ2F1bnhibHB1ZGtteG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3MDI5NTksImV4cCI6MjA2NjI3ODk1OX0.J8ni4SszaI33ljthdEjqXf8ZKFCs4uWnRZZDyU0IlUU'
+    )document.addEventListener("DOMContentLoaded", async () => {
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session) return window.location.href = "index.html"
+
+  const { data: profile } = await supabase
+    .from('users')
+    .select('license_valid_until')
+    .eq('id', session.user.id)
+    .single()
+
+  const content = document.getElementById("dashboardContent")
+  const block = document.getElementById("licenseBlock")
+
+  if (!profile || !profile.license_valid_until || new Date(profile.license_valid_until) < new Date()) {
+    content.style.display = "none"
+    block.style.display = "block"
+  } else {
+    content.style.display = "block"
+    block.style.display = "none"
+  }
+})
+
+  </script>
+  <style>
+    #dashboardContent, #licenseBlock {
+      max-width: 600px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-radius: 15px;
+      background: rgba(0,0,0,0.5);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; color:#4caf50">GrowEmpire Dashboard</h1>  <div id="licenseBlock" style="display:none">
+    <h2>🚫 Lizenz erforderlich</h2>
+    <p>Du benötigst eine aktive Lizenz, um das System zu nutzen.</p>
+    <a href="lizenz.html"><button>Lizenz aktivieren</button></a>
+  </div>  <div id="dashboardContent" style="display:none">
+    <h2>🌱 Deine Pflanzen, Finanzen & Partner folgen hier...</h2>
+    <p>Dashboard-Ausbau in Vorbereitung ✅</p>
+  </div>
+</body>
+</html>
