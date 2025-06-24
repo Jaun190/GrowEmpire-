@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>🌿 Pflanze setzen</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #101b14;
+      color: #e0ffe0;
+      padding: 2rem;
+    }
+    input, select, button {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 100%;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h2>🌱 Neue Pflanze setzen</h2>
+
+  <div id="form-area">
+    <label for="sorte">Sorte wählen:</label>
+    <select id="sorte">
+      <option value="Haze">Haze</option>
+      <option value="Kush">Kush</option>
+      <option value="Skunk">Skunk</option>
+    </select>
+    <button onclick="pflanzeSetzen()">Setzen</button>
+  </div>
+
+  <p id="status" class="hidden"></p>
+
+  <script>
+    const supabase = supabase.createClient(
+      'https://ghfzdgaunxblpudkmxmy.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoZnpkZ2F1bnhibHB1ZGtteG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3MDI5NTksImV4cCI6MjA2NjI3ODk1OX0.J8ni4SszaI33ljthdEjqXf8ZKFCs4uWnRZZDyU0IlUU'
+    );
+
+    async function pflanzeSetzen() {
+      const sorte = document.getElementById('sorte').value;
+      const {
+        data: { user }
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        document.getElementById('status').textContent = "❌ Nicht eingeloggt.";
+        document.getElementById('status').classList.remove('hidden');
+        return;
+      }
+
+      const { error } = await supabase.from('pflanzen').insert({
+        nutzer_id: user.id,
+        sorte: sorte
+      });
+
+      if (error) {
+        document.getElementById('status').textContent = "❌ Fehler beim Pflanzen.";
+      } else {
+        document.getElementById('status').textContent = "✅ Pflanze erfolgreich gesetzt!";
+      }
+      document.getElementById('status').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
