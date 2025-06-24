@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>GrowEmpire – Login</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body style="font-family: sans-serif; padding: 2rem;">
+  <h2>Login bei GrowEmpire</h2>
+
+  <input id="email" type="email" placeholder="E-Mail" style="display:block; margin: 10px 0; padding: 8px; width: 250px;" />
+  <input id="password" type="password" placeholder="Passwort" style="display:block; margin: 10px 0; padding: 8px; width: 250px;" />
+  <button onclick="login()" style="padding: 10px 20px;">Login</button>
+
+  <p id="status" style="margin-top: 20px;"></p>
+
+  <script>
+    const supabase = supabase.createClient(
+      "https://ghfzdgaunxblpudkmxmy.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoZnpkZ2F1bnhibHB1ZGtteG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3MDI5NTksImV4cCI6MjA2NjI3ODk1OX0.J8ni4SszaI33ljthdEjqXf8ZKFCs4uWnRZZDyU0IlUU"
+    );
+
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      const status = document.getElementById("status");
+      if (error) {
+        status.style.color = "red";
+        status.textContent = "Fehler: " + error.message;
+      } else {
+        status.style.color = "green";
+        status.textContent = "Login erfolgreich! Weiterleitung...";
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
