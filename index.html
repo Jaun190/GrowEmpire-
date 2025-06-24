@@ -12,14 +12,14 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: Arial, sans-serif;
+      background-color: #000;
     }
 
     body {
       background: url("public/welcome.png") no-repeat center top;
       background-size: contain;
-      background-color: #000;
+      min-height: 100vh;
       position: relative;
     }
 
@@ -27,7 +27,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background-color: rgba(0, 0, 0, 0.6); /* Abdunkelung */
+      background-color: rgba(0, 0, 0, 0.6);
       z-index: 0;
     }
 
@@ -42,8 +42,8 @@
       max-width: 400px;
       color: white;
       text-align: center;
-      margin: 100vh auto 0 auto; /* Weiter nach unten */
-      transform: translateY(-60%);
+      margin: 60vh auto 50px auto; /* ← Höhe reduziert */
+      transform: translateY(-20%); /* weniger Verschiebung */
     }
 
     .login-container h2 {
@@ -79,6 +79,13 @@
     .register-link a {
       color: #2ecc71;
       text-decoration: none;
+    }
+
+    @media (max-width: 500px) {
+      .login-container {
+        margin: 60vh auto 30px auto;
+        transform: translateY(-25%);
+      }
     }
   </style>
 </head>
