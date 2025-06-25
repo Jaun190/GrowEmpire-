@@ -1,0 +1,35 @@
+
+<!-- Supabase Eintrag nach Pflanzenkauf -->
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script>
+  const supabase = supabase.createClient(
+    "https://ghfzdgaunxblpudkmxmy.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoZnpkZ2F1bnhibHB1ZGtteG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3MDI5NTksImV4cCI6MjA2NjI3ODk1OX0.J8ni4SszaI33ljthdEjqXf8ZKFCs4uWnRZZDyU0IlUU"
+  );
+
+  async function pflanzeSpeichern(sorte, menge, istReinvest = false) {
+    const user_id = localStorage.getItem("userid") || "demo-user";
+    const kaufdatum = new Date();
+    const erntezeit = (sorte === "Premium Grow") ? 75 : (sorte === "Basic Grow" ? 60 : 75);
+    const erntedatum = new Date();
+    erntedatum.setDate(kaufdatum.getDate() + erntezeit);
+
+    const { data, error } = await supabase.from("pflanzen").insert([
+      {
+        user_id: user_id,
+        sorte: sorte,
+        menge: parseInt(menge),
+        kaufdatum: kaufdatum.toISOString(),
+        erntedatum: erntedatum.toISOString(),
+        reinvest: istReinvest
+      }
+    ]);
+
+    if (error) {
+      alert("Fehler beim Speichern: " + error.message);
+    } else {
+      alert("Pflanzen gespeichert ✅");
+      window.location.href = "dashboard.html";
+    }
+  }
+</script>

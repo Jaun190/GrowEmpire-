@@ -1,0 +1,28 @@
+
+GrowEmpire – Gesamtstatus (Stand: Heute)
+
+✅ FERTIGGESTELLT:
+- Dashboard (Countdown, Bonus, Lizenz, Partner)
+- Pflanzenkauf-Seite mit Sorten & Staffelpreisen
+- Supabase-Tabelle: pflanzen
+- PDF-Belege (HTML, bereit für Konvertierung)
+- Adminpanel (Demo mit Nutzer- & Pflanzenübersicht)
+- Design: hell, mobilfähig, responsive
+- ZIP-Export mit allen Dateien
+
+🔧 AKTUELL IN UMSETZUNG:
+- Stripe-Integration (Live-Zahlung)
+- PDF-Erzeugung nach Kauf (automatisch)
+- PDF-Mailversand (an Nutzer)
+- Supabase-Login-Verknüpfung (User-ID = Basis)
+- Adminpanel: Auszahlungslogik, PDF-Links dynamisch
+- Android-APK Builder auf Basis finaler ZIP
+- Finales Online-Deployment (Netlify oder Vercel)
+
+⏳ ALS NÄCHSTES:
+- Live-Zahlungstest (Stripe)
+- Kaufdaten automatisch speichern
+- Dynamische PDF-Belege + E-Mail-Versand
+- Deployment live oder APK je nach Wunsch
+
+⚙️ Du musst nichts tun – alles läuft jetzt automatisch weiter.

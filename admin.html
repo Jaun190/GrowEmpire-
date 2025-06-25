@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adminpanel – GrowEmpire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; margin: 0; background: #f3fef2; padding: 2em; color: #2e7d32; }
+    h1 { text-align: center; color: #1b5e20; }
+    .table { width: 100%; border-collapse: collapse; margin-top: 2em; }
+    th, td { padding: 0.8em; border: 1px solid #ccc; text-align: left; }
+    th { background: #c8e6c9; }
+    .section { max-width: 1100px; margin: auto; }
+    .subhead { margin-top: 2em; color: #33691e; }
+    .btn {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.4em 1em;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛠️ Adminpanel – GrowEmpire</h1>
+  <div class="section">
+    <h2 class="subhead">👤 Nutzerübersicht</h2>
+    <table class="table">
+      <tr><th>User ID</th><th>Status</th><th>Lizenz</th><th>Läuft bis</th><th>Aktion</th></tr>
+      <tr><td>u-001</td><td>Aktiv</td><td>6 Monate</td><td>01.01.2026</td><td><button class="btn">Details</button></td></tr>
+      <tr><td>u-002</td><td>Inaktiv</td><td>-</td><td>-</td><td><button class="btn">Details</button></td></tr>
+    </table>
+
+    <h2 class="subhead">🌱 Pflanzenkäufe</h2>
+    <table class="table">
+      <tr><th>User ID</th><th>Sorte</th><th>Menge</th><th>Ernte</th><th>Status</th></tr>
+      <tr><td>u-001</td><td>Basic Grow</td><td>3</td><td>15.08.2025</td><td>Aktiv</td></tr>
+      <tr><td>u-001</td><td>Reinvest Grow</td><td>5</td><td>20.09.2025</td><td>Aktiv</td></tr>
+    </table>
+
+    <h2 class="subhead">📥 PDF-Belege</h2>
+    <ul>
+      <li><a href="#">🧾 Lizenz u-001 – 6 Monate – PDF herunterladen</a></li>
+      <li><a href="#">🧾 Pflanzenkauf u-001 – 3 Basic – PDF herunterladen</a></li>
+    </ul>
+  </div>
+</body>
+</html>

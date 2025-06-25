@@ -1,0 +1,54 @@
+
+<!-- Pflanzen-Countdown Bereich im Dashboard -->
+<div class="section">
+  <h2>🌿 Deine aktiven Pflanzen</h2>
+
+  <div id="pflanzenListe">
+    <p>Lade Pflanzen...</p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script>
+  const supabase = supabase.createClient(
+    "https://ghfzdgaunxblpudkmxmy.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoZnpkZ2F1bnhibHB1ZGtteG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3MDI5NTksImV4cCI6MjA2NjI3ODk1OX0.J8ni4SszaI33ljthdEjqXf8ZKFCs4uWnRZZDyU0IlUU"
+  );
+
+  async function ladePflanzen() {
+    const user_id = localStorage.getItem("userid") || "demo-user";
+    const { data, error } = await supabase
+      .from("pflanzen")
+      .select("*")
+      .eq("user_id", user_id)
+      .eq("status", "aktiv");
+
+    if (error) {
+      document.getElementById("pflanzenListe").innerHTML = "<p>Fehler beim Laden.</p>";
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      document.getElementById("pflanzenListe").innerHTML = "<p>Du hast aktuell keine Pflanzen.</p>";
+      return;
+    }
+
+    let html = "";
+    data.forEach(pflanze => {
+      const erntedatum = new Date(pflanze.erntedatum);
+      const heute = new Date();
+      const diff = Math.ceil((erntedatum - heute) / (1000 * 60 * 60 * 24));
+      html += `
+        <div style="margin-bottom: 1em;">
+          <strong>${pflanze.menge}× ${pflanze.sorte}</strong><br/>
+          Ernte in: ${diff} Tage<br/>
+          <progress max="75" value="${75 - diff}" style="width:100%"></progress>
+        </div>
+      `;
+    });
+
+    document.getElementById("pflanzenListe").innerHTML = html;
+  }
+
+  ladePflanzen();
+</script>
